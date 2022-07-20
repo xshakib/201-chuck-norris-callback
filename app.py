@@ -36,13 +36,11 @@ app.layout = html.Div([
 ######### Interactive callbacks go here #########
 @app.callback(dash.dependencies.Output('your-output-here', 'children'),
               [dash.dependencies.Input('your-input-here', 'value')])
-
 def display_value(whatever_you_chose):
     return f'Get ready to roll with {list_of_choices[whatever_you_chose]}!'
 
 @app.callback(dash.dependencies.Output('image-output', 'src'),
               [dash.dependencies.Input('your-input-here', 'value')])
-
 def display_value(whatever_you_chose):
     return app.get_asset_url(list_of_images[whatever_you_chose])
 
