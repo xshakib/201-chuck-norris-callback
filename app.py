@@ -20,10 +20,10 @@ app.title='Regional Manager'
 ####### Layout of the app ########
 app.layout = html.Div([
     html.H2(myheading1),
-    html.Img(id='image-output', src=app.get_asset_url('download.png')),
+    html.Img(id='image-output', src=app.get_asset_url('tellmoremike.png')),
     dcc.Dropdown(id='your-input-here',
                 options=[{'value': i, 'label': list_of_choices[i]} for i in range(0, 4)],
-                value='McDouble',
+                value='santa bond mike',
                 style={'width': '500px'}),
     html.Br(),
     html.A('Code on Github', href=githublink),
@@ -38,7 +38,7 @@ app.layout = html.Div([
               [dash.dependencies.Input('your-input-here', 'value')])
 
 def display_value(whatever_you_chose):
-    return f'Get ready to roll with {whatever_you_chose}!'
+    return f'Get ready to roll with {list_of_choices[whatever_you_chose]}!'
 
 @app.callback(dash.dependencies.Output('image-output', 'src'),
               [dash.dependencies.Input('your-input-here', 'value')])
