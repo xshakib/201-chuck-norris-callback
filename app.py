@@ -34,7 +34,7 @@ app.layout = html.Div([
 
 
 ######### Interactive callbacks go here #########
-@app.callback(dash.dependencies.Output('your-output-here', 'children'),
+@app.callback([dash.dependencies.Output('your-output-here', 'children'),
               dash.dependencies.Output('show-image', 'src')],
               [dash.dependencies.Input('your-input-here', 'value')])
 def display_value(whatever_you_chose):
