@@ -6,7 +6,7 @@ import os
 
 ###### Set up variables
 list_of_choices=['santa bond mike', 'prison mike', 'willy wonka mike', 'datemike']
-list_of_images=['bondmike.jpg', 'prisonmike.png', 'wonkamike.png', 'datemike.png', 'tellmoremike.png']
+list_of_images=['bondmike.jpg', 'prisonmike.png', 'wonkamike.png', 'datemike.png']
 githublink = 'https://github.com/xshakib/201-chuck-norris-callback'
 myheading1='Pick Your Michael Scott Experience!'
 sourceurl = 'https://github.com/xshakib/201-chuck-norris-callback'
@@ -22,19 +22,20 @@ app.layout = html.Div([
     html.H2(myheading1),
     html.Img(id='image-output', src=app.get_asset_url('tellmoremike.png'),style={'width': 'auto', 'height': '10%'}),
     dcc.Dropdown(id='your-input-here',
-                options=[{'value': i, 'label': i} for i in list_of_choices],
-                value='santa bond mike',
-                style={'width': '500px'}),
+                 options=[{'label': i, 'value': i} for i in list_of_choices],
+                 value='initial',
+                 style={'width': '500px'}),
+    html.Br(),
+    html.Div(id='your-output-here', children=''),
     html.Br(),
     html.A('Code on Github', href=githublink),
-    html.Br(),
-    html.A("Data Source", href=sourceurl),
-    ]
-)
+
+])
 
 
 ######### Interactive callbacks go here #########
 @app.callback(dash.dependencies.Output('your-output-here', 'children'),
+              dash.dependencies.Output('show-image', 'src')],
               [dash.dependencies.Input('your-input-here', 'value')])
 def display_value(whatever_you_chose):
     
@@ -46,7 +47,7 @@ def display_value(whatever_you_chose):
     
     else:
         print("11111111")
-        return (f'You are not rolling with {whatever_you_chose}!',
+        return (f'You are now rolling with {whatever_you_chose}!',
                 app.get_asset_url(list_of_images[list_of_choices.index(whatever_you_chose)]))
 
 
