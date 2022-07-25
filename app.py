@@ -15,14 +15,14 @@ sourceurl = 'https://github.com/xshakib/201-chuck-norris-callback'
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
-app.title='Regional Manager'
+app.title='Scott\'s Tots'
 
 ####### Layout of the app ########
 app.layout = html.Div([
     html.H2(myheading1),
-    html.Img(id='image-output', src=app.get_asset_url('tellmoremike.png')),
+    html.Img(id='image-output', src=app.get_asset_url('tellmoremike.png'),style={'width': 'auto', 'height': '10%'}),
     dcc.Dropdown(id='your-input-here',
-                options=[{'value': i, 'label': list_of_choices[i]} for i in range(0, 4)],
+                options=[{'value': i, 'label': i} for i in list_of_choices],
                 value='santa bond mike',
                 style={'width': '500px'}),
     html.Br(),
@@ -37,12 +37,17 @@ app.layout = html.Div([
 @app.callback(dash.dependencies.Output('your-output-here', 'children'),
               [dash.dependencies.Input('your-input-here', 'value')])
 def display_value(whatever_you_chose):
-    return f'Get ready to roll with {list_of_choices[whatever_you_chose]}!'
-
-@app.callback(dash.dependencies.Output('image-output', 'src'),
-              [dash.dependencies.Input('your-input-here', 'value')])
-def display_value(whatever_you_chose):
-    return app.get_asset_url(list_of_images[whatever_you_chose])
+    
+    print(whatever_you_chose)
+    if whatever_you_chose == "santa bond mike":
+        print("000000000")
+        return (f'Pick your favorite Michael Scott characters and enjoy!',
+                app.get_asset_url('tellmoremike.png'))
+    
+    else:
+        print("11111111")
+        return (f'You are not rolling with {whatever_you_chose}!',
+                app.get_asset_url(list_of_images[list_of_choices.index(whatever_you_chose)]))
 
 
 
