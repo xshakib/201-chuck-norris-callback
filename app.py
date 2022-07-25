@@ -20,7 +20,7 @@ app.title='Scott\'s Tots'
 ####### Layout of the app ########
 app.layout = html.Div([
     html.H2(myheading1),
-    html.Img(id='image-output', src=app.get_asset_url('tellmoremike.png'),style={'width': 'auto', 'height': '10%'}),
+    html.Img(id='show-image', src=app.get_asset_url('tellmoremike.png'),style={'width': 'auto', 'height': '10%'}),
     dcc.Dropdown(id='your-input-here',
                  options=[{'label': i, 'value': i} for i in list_of_choices],
                  value='initial',
@@ -40,7 +40,7 @@ app.layout = html.Div([
 def display_value(whatever_you_chose):
     
     print(whatever_you_chose)
-    if whatever_you_chose == "santa bond mike":
+    if whatever_you_chose == "initial":
         print("000000000")
         return (f'Pick your favorite Michael Scott characters and enjoy!',
                 app.get_asset_url('tellmoremike.png'))
